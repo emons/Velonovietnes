@@ -1,22 +1,70 @@
 package com.velonovietnes.velonovietnes;
 
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.MapFragment;
 
 public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private GoogleMap googleMap;
+    private GoogleMap map;
+    private LatLng myPosition;
+    private final LatLng LOCATION_RIGA = new LatLng(56.950678, 24.116441);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
+        /*map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();           //Jauztaisa lai kad ieej appa radas riga
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(LOCATION_RIGA, 12);
+        map.animateCamera(update);*/
+
+
+        // Getting reference to the SupportMapFragment of activity_main.xml
+        SupportMapFragment fm = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+
+        googleMap = fm.getMap();
+
+        // Enabling MyLocation Layer of Google Map
+        googleMap.setMyLocationEnabled(true);
+
+        // Getting LocationManager object from System Service LOCATION_SERVICE
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        // Creating a criteria object to retrieve provider
+        Criteria criteria = new Criteria();
+
+        // Getting the name of the best provider
+        String provider = locationManager.getBestProvider(criteria, true);
+
+        // Getting Current Location
+        Location location = locationManager.getLastKnownLocation(provider);
+
+        /*if(location!=null){
+            // Getting latitude of the current location
+            double latitude = location.getLatitude();
+
+            // Getting longitude of the current location
+            double longitude = location.getLongitude();
+
+            // Creating a LatLng object for the current location
+
+            myPosition = new LatLng(latitude, longitude);
+
+            googleMap.addMarker(new MarkerOptions().position(myPosition).title("Start"));}*/
+
     }
 
     @Override
@@ -46,6 +94,8 @@ public class MapsActivity extends FragmentActivity {
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_RIGA, 4));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
