@@ -1,7 +1,7 @@
 package com.velonovietnes.velonovietnes;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity /*implements View.OnClickListener*/ {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     TextView tvMap;
     ImageView ivMap;
@@ -22,23 +22,23 @@ public class MainActivity extends ActionBarActivity /*implements View.OnClickLis
         setContentView(R.layout.activity_main);
         tvMap = (TextView) findViewById(R.id.tvMap);
         ivMap = (ImageView) findViewById(R.id.ivMap);
-        /*tvMap.setOnClickListener(this);
-        ivMap.setOnClickListener(this);*/
+        tvMap.setOnClickListener(this);
+        ivMap.setOnClickListener(this);
     }
 
-   /*@Override
+   @Override
     public void onClick(View v) {                                                                   //Menu buttons
         switch (v.getId())
         {
             case R.id.tvMap:
-                Intent maptvIntent = new Intent(MainActivity.this, MapActivity.class); // Jauztaisa map activity
-                startActivity(mapIntent);
+                Intent maptvIntent = new Intent(MainActivity.this, MapsActivity.class); // Jauztaisa map activity
+                startActivity(maptvIntent);
                 break;
             case R.id.ivMap:
-                Intent mapivIntent = new Intent(MainActivity.this, MapActivity.class); // Jauztaisa map activity
-                startActivity(mapIntent);
+                Intent mapivIntent = new Intent(MainActivity.this, MapsActivity.class); // Jauztaisa map activity
+                startActivity(mapivIntent);
         }
-    }*/
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
