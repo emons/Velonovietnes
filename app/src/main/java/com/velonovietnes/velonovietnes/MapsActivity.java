@@ -10,15 +10,22 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.MapFragment;
 
 public class MapsActivity extends FragmentActivity {
 
+    private static final String NOM_BDD = "marqueur.db";
+
+    private static final String TABLE_GEOPOINT = "geopoint";
+    private static final String COL_ID = "ID";
+    private static final String COL_LONG = "LONGITUDE";
+    private static final String COL_LAT = "LATITUDE";
+
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private GoogleMap googleMap;
-    private GoogleMap map;
     private LatLng myPosition;
     private final LatLng LOCATION_RIGA = new LatLng(56.950678, 24.116441);
 
@@ -27,9 +34,6 @@ public class MapsActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
-        /*map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();           //Jauztaisa lai kad ieej appa radas riga
-        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(LOCATION_RIGA, 12);
-        map.animateCamera(update);*/
 
 
         // Getting reference to the SupportMapFragment of activity_main.xml
@@ -114,5 +118,40 @@ public class MapsActivity extends FragmentActivity {
         mMap.addMarker(new MarkerOptions().position(new LatLng(56.982929, 24.202108)).title("T/C Alfa"));
         mMap.addMarker(new MarkerOptions().position(new LatLng(56.979281, 24.184783)).title("Džutas iela 1"));
         mMap.addMarker(new MarkerOptions().position(new LatLng(56.977968, 24.182889)).title("Veloveikals"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.949515, 24.083608)).title("TC Olympia").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.951733,24.124743)).title("Pie Latvijas Investīciju un attīstības aģentūras ēkas").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.947467,24.106321)).title("Rātslaukums").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.954676, 24.125193)).title("Jaunais Rīgas teātris").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.990329, 24.219242)).title("Pie Bābelīša ezera glābšanas stacijas").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.97607, 24.176853)).title("Vidzemes priekšpilsētas izpilddirekcija").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.936277,24.07671)).title("Zemgales priekšpilsētas izpilddirekcija").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.954991,24.109572)).title("Parex banka").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.945355, 24.114829)).title("Rīgas Starptautiskā Autoosta").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.954184, 24.127736)).title("Rīgas domes Satiksmes departaments").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.970012, 24.102244)).title("Dinaz būve").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.955155, 24.10394)).title("LU Bioloģijas fakultāte").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.963228, 24.125708)).title("LU Ķīmijas fakultāte").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.959297, 24.109089)).title("LU Ģeogrāfijas un Zemes zinātņu fakultātes studentu pašpārvalde").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.935054, 24.077461)).title("Fizikas un matemātikas fakultātes studentu pašpārvalde").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.952634, 24.016467)).title("LU Pedagoģijas un psiholoģijas fakultāte").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.939672, 24.157584)).title("LU Sociālo zinātņu fakultāte").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.951218, 24.060327)).title("LU Botāniskais dārzs").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.950691,24.116106)).title("LU Centrālā ēka").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.953441, 24.054941)).title("Rīgas Stradiņa universitāte").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.931899, 24.07215)).title("Rīgas Stradiņa universitātes kopmītnes").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.975234, 24.134721)).title("Biznesa augstskola").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.937869, 24.15621)).title("Biznesa Starptautiskā augstskola").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.947959, 24.12971)).title("Latvijas Universitātes Moderno valodu fakultātes").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.937015, 24.100614)).title("Pie laikraksta Diena redakcijas ēkas").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.944547, 24.140664)).title("Pie VIC Velokurjers").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.951592, 24.109401)).title("Pie Vecrīgas caurlaižu punkta").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.947929, 24.114894)).title("Pie LU Ekonomikas fakultātes").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.951891, 24.113992)).title("Alejā aiz Brīvības pieminekļa").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.96245, 24.110656)).title("Pie Rīgas domes Izglītības, jaunatnes un sporta departamenta").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.948602, 24.113413)).title("Galerija Centrs").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.948596, 24.113821)).title("Galerija centrs").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.951955, 24.083855)).title("RTU velostāvvieta").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(56.951387,24.166306)).title("Deglava ielā 50 pie veikala Fans").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+
     }
 }
