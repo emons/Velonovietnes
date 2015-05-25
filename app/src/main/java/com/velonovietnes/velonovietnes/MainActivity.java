@@ -14,6 +14,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     TextView tvMap;
     ImageView ivMap;
+    TextView tvService;
+    ImageView ivService;
 
 
     @Override
@@ -22,8 +24,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         tvMap = (TextView) findViewById(R.id.tvMap);
         ivMap = (ImageView) findViewById(R.id.ivMap);
+        tvService = (TextView) findViewById(R.id.tvService);
+        ivService = (ImageView) findViewById(R.id.ivService);
         tvMap.setOnClickListener(this);
         ivMap.setOnClickListener(this);
+        tvService.setOnClickListener(this);
+        ivService.setOnClickListener(this);
     }
 
    @Override
@@ -31,12 +37,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch (v.getId())
         {
             case R.id.tvMap:
-                Intent maptvIntent = new Intent(MainActivity.this, MapsActivity.class); // Jauztaisa map activity
+                Intent maptvIntent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(maptvIntent);
                 break;
             case R.id.ivMap:
-                Intent mapivIntent = new Intent(MainActivity.this, MapsActivity.class); // Jauztaisa map activity
+                Intent mapivIntent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(mapivIntent);
+                break;
+            case R.id.tvService:
+                Intent servicetvIntent = new Intent(MainActivity.this, ServiceActivity.class);
+                startActivity(servicetvIntent);
+                break;
+            case R.id.ivService:
+                Intent serviceivIntent = new Intent(MainActivity.this, ServiceActivity.class);
+                startActivity(serviceivIntent);
+                break;
         }
     }
 

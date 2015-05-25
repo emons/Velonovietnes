@@ -6,4 +6,5 @@
     <string name="ParkingMap">Novietņu karte</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_service">Service centers</string>
 </resources>
