@@ -32,6 +32,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ivService.setOnClickListener(this);
     }
 
+
    @Override
     public void onClick(View v) {                                                                   //Menu buttons
         switch (v.getId())

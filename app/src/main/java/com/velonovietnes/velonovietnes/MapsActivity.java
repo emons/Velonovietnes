@@ -5,6 +5,8 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
@@ -71,6 +73,18 @@ public class MapsActivity extends FragmentActivity {
 
             googleMap.addMarker(new MarkerOptions().position(myPosition).title("Start"));}*/
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_, menu);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 
     @Override
