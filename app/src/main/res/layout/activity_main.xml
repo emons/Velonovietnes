@@ -21,9 +21,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/ParkingMap"
         android:id="@+id/tvMap"
-        android:layout_below="@+id/ivMap"
-        android:layout_alignRight="@+id/ivMap"
-        android:layout_alignEnd="@+id/ivMap" />
+        android:layout_alignTop="@+id/tvService"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:layout_width="180px"
@@ -40,10 +40,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Veloservisi"
+        android:text="@string/veloservices"
         android:id="@+id/tvService"
         android:onClick="onClickListener"
         android:layout_below="@+id/ivService"
-        android:layout_alignLeft="@+id/ivService"
-        android:layout_alignStart="@+id/ivService" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivAvailable"
+        android:layout_marginTop="38dp"
+        android:src="@drawable/pump"
+        android:layout_below="@+id/tvMap"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickListener"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/available_services"
+        android:id="@+id/tvAvailable"
+        android:layout_below="@+id/ivAvailable"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickListener"/>
 </RelativeLayout>

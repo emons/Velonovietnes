@@ -16,8 +16,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     ImageView ivMap;
     TextView tvService;
     ImageView ivService;
+    TextView tvAvailable;
+    ImageView ivAvailable;
 
-
+    //Finding and assigning the views
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,15 +28,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ivMap = (ImageView) findViewById(R.id.ivMap);
         tvService = (TextView) findViewById(R.id.tvService);
         ivService = (ImageView) findViewById(R.id.ivService);
+        tvAvailable = (TextView) findViewById(R.id.tvAvailable);
+        ivAvailable = (ImageView) findViewById(R.id.ivAvailable);
         tvMap.setOnClickListener(this);
         ivMap.setOnClickListener(this);
         tvService.setOnClickListener(this);
         ivService.setOnClickListener(this);
+        tvAvailable.setOnClickListener(this);
+        ivAvailable.setOnClickListener(this);
     }
 
-
+    //An on click even with a switch structure
    @Override
-    public void onClick(View v) {                                                                   //Menu buttons
+    public void onClick(View v) {
         switch (v.getId())
         {
             case R.id.tvMap:
@@ -53,6 +59,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Intent serviceivIntent = new Intent(MainActivity.this, ServiceActivity.class);
                 startActivity(serviceivIntent);
                 break;
+            case R.id.tvAvailable:
+                Intent availabletvIntent = new Intent(MainActivity.this, ServiceActivity.class);
+                startActivity(availabletvIntent);
+                break;
+            case R.id.ivAvailable:
+                Intent availableivIntent = new Intent(MainActivity.this, ServiceActivity.class);
+                startActivity(availableivIntent);
+                break;
         }
     }
 
@@ -69,11 +83,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

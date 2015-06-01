@@ -13,7 +13,6 @@ import android.widget.SimpleCursorAdapter;
 public class ServiceActivity extends Activity {
 
     DBAdapter myDB;
-    String name ="Veloprieks", adress="bulvaris", description="shito laikam pat nevajag 1231 kakakakaka tests test eswtesda asfbug bguubu";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

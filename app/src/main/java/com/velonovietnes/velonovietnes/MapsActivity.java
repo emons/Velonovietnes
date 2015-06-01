@@ -184,8 +184,13 @@ public class MapsActivity extends FragmentActivity {
                     public void onClick(View v) {
                         if(((RadioButton)v).isChecked()){
                             mMap.clear();
-                            mMap.addMarker(new MarkerOptions().position(new LatLng(56.951955, 24.083855)).title("TEST LOPC").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
-                            mMap.addMarker(new MarkerOptions().position(new LatLng(56.951387, 24.166306)).title("TESTSETST").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall)));
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(56.950763, 24.170619)).title("Fans").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall2)));
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(56.944102, 24.070516)).title("Gandrs").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall2)));
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(56.948778, 23.960236)).title("ZZK").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall2)));
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(56.980609, 24.183741)).title("XSports").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall2)));
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(56.972195, 24.169200)).title("Hawaii Express").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall2)));
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(56.958524, 24.129891)).title("Riga Bike").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall2)));
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(56.987072, 24.223014)).title("Primum Bike").icon(BitmapDescriptorFactory.fromResource(R.drawable.mapiconsmall2)));
                         }
                     }
                 }

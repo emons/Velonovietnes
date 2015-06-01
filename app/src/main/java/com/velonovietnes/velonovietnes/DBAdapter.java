@@ -16,8 +16,15 @@ public class DBAdapter {
     public static final String KEY_NAME = "name";
     public static final String KEY_ADRESS = "adress";
     public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_WEBSITE = "website";
 
-    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_ADRESS, KEY_DESCRIPTION};
+    public static final String KEY_ROWID2 = "available_service_id";
+    public static final String KEY_ROWID22 = "service_id";
+    public static final String KEY_NAME2 = "available_service_name";
+    public static final String KEY_DIFF = "difficulty";
+    public static final String KEY_DESCRIPTION2 = "description";
+
+    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_ADRESS, KEY_DESCRIPTION, KEY_WEBSITE};
 
     // Column Numbers for each Field Name:
     public static final int COL_ROWID = 0;
@@ -37,7 +44,8 @@ public class DBAdapter {
                     + " (" + KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + KEY_NAME + " TEXT NOT NULL, "
                     + KEY_ADRESS + " TEXT, "
-                    + KEY_DESCRIPTION + " TEXT"
+                    + KEY_DESCRIPTION + " TEXT, "
+                    + KEY_WEBSITE + " TEXT"
                     + ");";
 
     private final Context context;
@@ -52,10 +60,10 @@ public class DBAdapter {
 
     // Open the database connection.
     public DBAdapter open() {
-        db = myDBHelper.getWritableDatabase();             //TODO: Nomainit uz nerakstamo db
+        db = myDBHelper.getWritableDatabase();
         return this;
     }
-
+    // Checks if the database is empty, if yes, populates it
     public void populateDB() {
         String count = "SELECT count(*) FROM mainService";
         Cursor mcursor = db.rawQuery(count, null);
@@ -87,11 +95,12 @@ public class DBAdapter {
     }
 
     // Add a new set of values to be inserted into the database.
-    public long insertRow(String name, String adress, String description) {
+    public long insertRow(String name, String adress, String description, String website) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NAME, name);
         initialValues.put(KEY_ADRESS, adress);
         initialValues.put(KEY_DESCRIPTION, description);
+        initialValues.put(KEY_WEBSITE, website);
 
         // Insert the data into the database.
         return db.insert(DATABASE_TABLE, null, initialValues);
@@ -117,7 +126,7 @@ public class DBAdapter {
     // Return all data in the database.
     public Cursor getAllRows() {
         String where = null;
-        Cursor c = 	db.query(true, DATABASE_TABLE, ALL_KEYS, where, null, null, null, null, null);
+        Cursor c = 	db.query(true, DATABASE_TABLE, ALL_KEYS, where, null, null, null, null, null, null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -135,16 +144,6 @@ public class DBAdapter {
         return c;
     }
 
-    // Change an existing row to be equal to new data.
-    public boolean updateRow(long rowId, String task, String date) {
-        String where = KEY_ROWID + "=" + rowId;
-        ContentValues newValues = new ContentValues();
-        newValues.put(KEY_NAME, task);
-        newValues.put(KEY_DESCRIPTION, date);
-        // Insert it into the database.
-        return db.update(DATABASE_TABLE, newValues, where, null) != 0;
-    }
-
 
     private static class DatabaseHelper extends SQLiteOpenHelper
     {
@@ -155,7 +154,6 @@ public class DBAdapter {
         @Override
         public void onCreate(SQLiteDatabase _db) {
             _db.execSQL(DATABASE_CREATE_SQL);
-            _db.execSQL("INSERT INTO mainService(name,adress,description) VALUES('123','12345','Test')");
         }
 
         @Override

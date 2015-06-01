@@ -7,4 +7,7 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_service">Service centers</string>
+    <string name="title_activity_splash_screen">Velonovietnes</string>
+    <string name="available_services">Pieejamie Pakalpojumi</string>
+    <string name="veloservices">Veloservisi</string>
 </resources>
