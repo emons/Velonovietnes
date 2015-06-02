@@ -64,6 +64,7 @@ public class ServiceActivity extends Activity {
         //We make the listview use data from the cursor
         lv.setAdapter(myCursorAdapter);
 
+        //Clicking on a service in the list, takes you to an activity which shows more info about that service center
         lv.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,

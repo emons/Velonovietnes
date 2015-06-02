@@ -19,12 +19,13 @@ public class DBAdapter {
     public static final String KEY_WEBSITE = "website";
 
     public static final String KEY_ROWID2 = "available_service_id";
-    public static final String KEY_ROWID22 = "service_id";
+    public static final String KEY_FORROWID = "service_id";
     public static final String KEY_NAME2 = "available_service_name";
     public static final String KEY_DIFF = "difficulty";
-    public static final String KEY_DESCRIPTION2 = "description";
+    public static final String KEY_DESC = "description";
 
     public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_ADRESS, KEY_PHONE, KEY_WEBSITE};
+    public static final String[] ALL_KEYS2 = new String[] {KEY_ROWID2, KEY_FORROWID, KEY_NAME2, KEY_DIFF, KEY_DESC};
 
     // Column Numbers for each Field Name:
     public static final int COL_ROWID = 0;
@@ -35,7 +36,8 @@ public class DBAdapter {
 
     // DataBase info:
     public static final String DATABASE_NAME = "dbVelo";
-    public static final String DATABASE_TABLE = "mainService";
+    public static final String DATABASE_TABLE = "Service";
+    public static final String DATABASE2_TABLE = "AvailableService";
     public static final int DATABASE_VERSION = 1; // The version number must be incremented each time a change to DB structure occurs.
 
     //SQL statement to create database
@@ -47,6 +49,16 @@ public class DBAdapter {
                     + KEY_PHONE + " TEXT, "
                     + KEY_WEBSITE + " TEXT"
                     + ");";
+
+    private static final String DATABASE2_CREATE_SQL =
+            "CREATE TABLE " + DATABASE2_TABLE
+                    + " (" + KEY_ROWID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + KEY_FORROWID + " INTEGER, "
+                    + KEY_NAME2 + " TEXT, "
+                    + KEY_DIFF + " TEXT, "
+                    + KEY_DESC + " TEXT, "
+                    + " FOREIGN KEY ("+KEY_FORROWID+") REFERENCES "+DATABASE_TABLE+" ("+KEY_ROWID+"));";
+
 
     private final Context context;
     private DatabaseHelper myDBHelper;
@@ -64,21 +76,34 @@ public class DBAdapter {
         return this;
     }
     // Checks if the database is empty, if yes, populates it
-    public void populateDB() {
-        String count = "SELECT count(*) FROM mainService";
+    public void populateDB2() {
+        String count = "SELECT count(*) FROM AvailableService";
         Cursor mcursor = db.rawQuery(count, null);
         mcursor.moveToFirst();
         int icount = mcursor.getInt(0);
         if (icount > 0)
         return;
         else{
-            String sql = "INSERT INTO mainService (name, adress, phone, website) VALUES('Fans','A.Deglava 50','26132304','www.fans.lv');";
-            String sql2 = "INSERT INTO mainService (name, adress, phone) VALUES('Gandrs','Kalnciema 28','Lielakais veloservisu centrs riigaa!');";
-            String sql3 = "INSERT INTO mainService (name, adress, phone) VALUES('ZZK','Ulmaņa gatve 201','Lielakais veloservisu centrs riigaa!');";
-            String sql4 = "INSERT INTO mainService (name, adress, phone) VALUES('XSports','Džutas iela 8','Lielakais veloservisu centrs riigaa!');";
-            String sql5 = "INSERT INTO mainService (name, adress, phone) VALUES('Hawaii Express','Biķernieku 11','Lielakais veloservisu centrs riigaa!');";
-            String sql6 = "INSERT INTO mainService (name, adress, phone) VALUES('RigaBike','Matīsa 8','Lielakais veloservisu centrs riigaa!');";
-            String sql7 = "INSERT INTO mainService (name, adress, phone) VALUES('Primum Bike','Brīvības gatve 390','Lielakais veloservisu centrs riigaa!');";
+            String sql1 = "INSERT INTO AvailableService (service_id, available_service_name, difficulty) VALUES('1','Kameras maiņa','5','Nomaina velosipēdam plīsušo kameru.');";
+            db.execSQL(sql1);
+        }
+    }
+
+    public void populateDB() {
+        String count = "SELECT count(*) FROM Service";
+        Cursor mcursor = db.rawQuery(count, null);
+        mcursor.moveToFirst();
+        int icount = mcursor.getInt(0);
+        if (icount > 0)
+            return;
+        else{
+            String sql = "INSERT INTO Service (_id, name, adress, phone, website) VALUES('1','Fans','A.Deglava 50','67 802 056','www.fans.lv');";
+            String sql2 = "INSERT INTO Service (_id, name, adress, phone, website) VALUES('2','Gandrs','Kalnciema 28','67 614 775','www.gandrs.lv');";
+            String sql3 = "INSERT INTO Service (_id, name, adress, phone, website) VALUES('3','ZZK','Ulmaņa gatve 201','67 810 342','www.zzk.lv');";
+            String sql4 = "INSERT INTO Service (_id, name, adress, phone, website) VALUES('4','XSports','Džutas iela 8','26 111 666','www.xsports.lv');";
+            String sql5 = "INSERT INTO Service (_id, name, adress, phone, website) VALUES('5','Hawaii Express','Biķernieku 11','67 543 721','www.hawaiiexpress.lv');";
+            String sql6 = "INSERT INTO Service (_id, name, adress, phone, website) VALUES('6','RigaBike','Matīsa 8','29 443 535','www.rigabike.lv');";
+            String sql7 = "INSERT INTO Service (_id, name, adress, phone, website) VALUES('7','Primum Bike','Brīvības gatve 390','20208484','www.primumbike.lv');";
             db.execSQL(sql);
             db.execSQL(sql2);
             db.execSQL(sql3);
@@ -94,17 +119,6 @@ public class DBAdapter {
         myDBHelper.close();
     }
 
-    // Add a new set of values to be inserted into the database.
-    public long insertRow(String name, String adress, String phone, String website) {
-        ContentValues initialValues = new ContentValues();
-        initialValues.put(KEY_NAME, name);
-        initialValues.put(KEY_ADRESS, adress);
-        initialValues.put(KEY_PHONE, phone);
-        initialValues.put(KEY_WEBSITE, website);
-
-        // Insert the data into the database.
-        return db.insert(DATABASE_TABLE, null, initialValues);
-    }
 
     // Delete a row from the database, by rowId (primary key)
     public boolean deleteRow(long rowId) {
@@ -133,11 +147,12 @@ public class DBAdapter {
         return c;
     }
 
+
     // Get a specific row (by rowId)
-    public Cursor getRow(long rowId) {
-        String where = KEY_ROWID + "=" + rowId;
-        Cursor c = 	db.query(true, DATABASE_TABLE, ALL_KEYS,
-                where, null, null, null, null, null);
+    public Cursor getRow(String rowId) {
+        int foo = Integer.parseInt(rowId);
+        String where = KEY_FORROWID + " =" + foo;
+        Cursor c = 	db.query(true, DATABASE2_TABLE, ALL_KEYS2, where, null, null, null, null, null, null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -154,6 +169,7 @@ public class DBAdapter {
         @Override
         public void onCreate(SQLiteDatabase _db) {
             _db.execSQL(DATABASE_CREATE_SQL);
+            _db.execSQL(DATABASE2_CREATE_SQL);
         }
 
         @Override
