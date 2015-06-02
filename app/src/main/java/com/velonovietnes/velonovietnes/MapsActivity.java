@@ -1,5 +1,6 @@
 package com.velonovietnes.velonovietnes;
 
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -33,6 +34,13 @@ public class MapsActivity extends FragmentActivity {
     public RadioButton rbPaths;
     public RadioButton rbService;
 
+    private static final LatLng P1 = new LatLng(56.99901, 24.27341);
+    private static final LatLng P2 = new LatLng(56.98998, 24.24365);
+    private static final LatLng P3 = new LatLng(56.98563, 24.20906);
+    private static final LatLng P4 = new LatLng(56.96730, 24.14735);
+    private static final LatLng P5 = new LatLng(56.97163, 24.13383);
+    private static final LatLng P6 = new LatLng(56.96152, 24.12259);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,21 +65,6 @@ public class MapsActivity extends FragmentActivity {
         // Getting the name of the best provider
         String provider = locationManager.getBestProvider(criteria, true);
 
-        // Getting Current Location
-        Location location = locationManager.getLastKnownLocation(provider);
-
-        /*if(location!=null){
-            // Getting latitude of the current location
-            double latitude = location.getLatitude();
-
-            // Getting longitude of the current location
-            double longitude = location.getLongitude();
-
-            // Creating a LatLng object for the current location
-
-            myPosition = new LatLng(latitude, longitude);
-
-            googleMap.addMarker(new MarkerOptions().position(myPosition).title("Start"));}*/
 
     }
 
@@ -187,7 +180,8 @@ public class MapsActivity extends FragmentActivity {
                     public void onClick(View v) {
                         if (((RadioButton) v).isChecked()) {
                             mMap.clear();
-
+                            PolylineOptions popoption = new PolylineOptions().add(P1).add(P2).add(P3).add(P4).add(P5).add(P6).width(3).color(Color.CYAN);
+                            mMap.addPolyline(popoption);
                         }
                     }
                 }

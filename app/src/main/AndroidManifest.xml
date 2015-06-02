@@ -55,6 +55,7 @@
         <activity
             android:name=".ServiceInfoActivity"
             android:label="@string/title_activity_service_info"
+            android:screenOrientation="portrait"
             android:parentActivityName=".ServiceActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -62,7 +63,8 @@
         </activity>
         <activity
             android:name=".AvailableServicesActivity"
-            android:label="@string/title_activity_available_services" >
+            android:label="@string/title_activity_available_services"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

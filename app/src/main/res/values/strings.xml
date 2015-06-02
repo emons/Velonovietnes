@@ -10,6 +10,6 @@
     <string name="title_activity_splash_screen">Velonovietnes</string>
     <string name="available_services">Pieejamie Pakalpojumi</string>
     <string name="veloservices">Veloservisi</string>
-    <string name="title_activity_service_info">ServiceInfoActivity</string>
-    <string name="title_activity_available_services">AvailableServicesActivity</string>
+    <string name="title_activity_service_info">Service Information</string>
+    <string name="title_activity_available_services">Available Services</string>
 </resources>

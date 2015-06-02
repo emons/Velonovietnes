@@ -130,6 +130,13 @@ public class DBAdapter {
             String sql40 = "INSERT INTO AvailableService (service_id, available_service_name, difficulty, description) VALUES('3','Stūres maiņa','5','Nomaina velosipēdam stūri.');";
             db.execSQL(sql30); db.execSQL(sql31); db.execSQL(sql32); db.execSQL(sql33); db.execSQL(sql34); db.execSQL(sql35); db.execSQL(sql36); db.execSQL(sql37);
             db.execSQL(sql38); db.execSQL(sql39); db.execSQL(sql40);
+            String sql41 = "INSERT INTO AvailableService (service_id, available_service_name, difficulty, description) VALUES('7','Stūres bļodiņu maiņa','6','Nomaina velosipēdam stūres bļodiņas.');";
+            String sql42 = "INSERT INTO AvailableService (service_id, available_service_name, difficulty, description) VALUES('7','Stūres gultņu regulēšana','5','Noregulē velosipēdam stūres gultņus.');";
+            String sql43 = "INSERT INTO AvailableService (service_id, available_service_name, difficulty, description) VALUES('7','Pārslēdzēju rokturu maiņa','6','Nomaina velosipēdam pārslēdzēju rokturus.');";
+            String sql44 = "INSERT INTO AvailableService (service_id, available_service_name, difficulty, description) VALUES('7','Ātrumu regulēšana','5','Noregulē velosipēdam ātrumu pārslēgšanos.');";
+            String sql45 = "INSERT INTO AvailableService (service_id, available_service_name, difficulty, description) VALUES('7','Ātrumu troses maiņa, regulēšana','5','Noregulē vai nomaina velosipēdam ātrumu troses.');";
+            String sql46 = "INSERT INTO AvailableService (service_id, available_service_name, difficulty, description) VALUES('7','Bremžu troses maiņa, regulēšana','5','Noregulē vai nomaina velosipēdam bremžu troses.');";
+            db.execSQL(sql41); db.execSQL(sql42); db.execSQL(sql43); db.execSQL(sql44); db.execSQL(sql45); db.execSQL(sql46);
         }
     }
 
@@ -159,7 +166,7 @@ public class DBAdapter {
     }
 
     public void populateDB3() {
-        String count = "SELECT count(*) FROM Service";
+        String count = "SELECT count(*) FROM eServic";
         Cursor mcursor = db.rawQuery(count, null);
         mcursor.moveToFirst();
         int icount = mcursor.getInt(0);
