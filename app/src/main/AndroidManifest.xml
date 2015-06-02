@@ -55,10 +55,14 @@
         <activity
             android:name=".ServiceInfoActivity"
             android:label="@string/title_activity_service_info"
-            android:parentActivityName="ServiceActivity">
+            android:parentActivityName=".ServiceActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.velonovietnes.velonovietnes.ServiceActivity"/>
+                android:value="com.velonovietnes.velonovietnes.ServiceActivity" />
+        </activity>
+        <activity
+            android:name=".AvailableServicesActivity"
+            android:label="@string/title_activity_available_services" >
         </activity>
     </application>
 

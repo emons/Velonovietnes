@@ -60,11 +60,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(serviceivIntent);
                 break;
             case R.id.tvAvailable:
-                Intent availabletvIntent = new Intent(MainActivity.this, ServiceActivity.class);
+                Intent availabletvIntent = new Intent(MainActivity.this, AvailableServicesActivity.class);
                 startActivity(availabletvIntent);
                 break;
             case R.id.ivAvailable:
-                Intent availableivIntent = new Intent(MainActivity.this, ServiceActivity.class);
+                Intent availableivIntent = new Intent(MainActivity.this, AvailableServicesActivity.class);
                 startActivity(availableivIntent);
                 break;
         }

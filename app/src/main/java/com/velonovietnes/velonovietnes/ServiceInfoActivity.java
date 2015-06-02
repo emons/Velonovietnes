@@ -24,6 +24,8 @@ public class ServiceInfoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_info);
 
+        lv = (ListView) findViewById(R.id.lvAvailableServices);
+
         Intent i = getIntent();
         String id = i.getStringExtra("serviceid");
         String name = i.getStringExtra("name");
@@ -33,8 +35,8 @@ public class ServiceInfoActivity extends Activity {
 
         myDB = new DBAdapter(this);
         myDB.open();
-        //myDB.populateDB2();
-        //populateList();
+        myDB.populateDB2();
+
 
         tvName = (TextView) findViewById(R.id.tvName);
         tvPhone = (TextView) findViewById(R.id.tvPhone);
@@ -48,7 +50,7 @@ public class ServiceInfoActivity extends Activity {
         tvPhone.setText(phone);
         tvWebsite.setText(website);
 
-        /*
+
         //Cursor that selected rows from the DBCursor getRow(String rowId)
         Cursor cursor = myDB.getRow(id);
         //Two arrays that gets the necessary info from DB and stores it
@@ -59,7 +61,7 @@ public class ServiceInfoActivity extends Activity {
         myCursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.list2_layout, cursor, fromFieldNames, toViewIDs, 0);
         //We make the listview use data from the cursor
         lv.setAdapter(myCursorAdapter);
-        */
+
     }
 
 

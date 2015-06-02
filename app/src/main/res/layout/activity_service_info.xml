@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.velonovietnes.velonovietnes.ServiceInfoActivity">
+    tools:context="com.velonovietnes.velonovietnes.ServiceInfoActivity"
+    >
 
     <ImageView
         android:layout_width="wrap_content"
@@ -77,14 +78,36 @@
         android:layout_below="@+id/textView9"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        android:autoLink="web"/>
 
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listView"
+        android:id="@+id/lvAvailableServices"
+        android:layout_toEndOf="@+id/tvWebsite"
+        android:layout_below="@+id/textView16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Pakalpojums"
+        android:id="@+id/textView16"
         android:layout_below="@+id/tvWebsite"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Saržģītība"
+        android:id="@+id/textView17"
+        android:layout_alignTop="@+id/textView16"
+        android:layout_alignRight="@+id/lvAvailableServices"
+        android:layout_alignEnd="@+id/lvAvailableServices"
+        android:textStyle="bold" />
 
 </RelativeLayout>
