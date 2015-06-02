@@ -15,7 +15,7 @@ public class DBAdapter {
     public static final String KEY_ROWID = "_id";
     public static final String KEY_NAME = "name";
     public static final String KEY_ADRESS = "adress";
-    public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_PHONE = "phone";
     public static final String KEY_WEBSITE = "website";
 
     public static final String KEY_ROWID2 = "available_service_id";
@@ -24,7 +24,7 @@ public class DBAdapter {
     public static final String KEY_DIFF = "difficulty";
     public static final String KEY_DESCRIPTION2 = "description";
 
-    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_ADRESS, KEY_DESCRIPTION, KEY_WEBSITE};
+    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_ADRESS, KEY_PHONE, KEY_WEBSITE};
 
     // Column Numbers for each Field Name:
     public static final int COL_ROWID = 0;
@@ -44,7 +44,7 @@ public class DBAdapter {
                     + " (" + KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + KEY_NAME + " TEXT NOT NULL, "
                     + KEY_ADRESS + " TEXT, "
-                    + KEY_DESCRIPTION + " TEXT, "
+                    + KEY_PHONE + " TEXT, "
                     + KEY_WEBSITE + " TEXT"
                     + ");";
 
@@ -72,13 +72,13 @@ public class DBAdapter {
         if (icount > 0)
         return;
         else{
-            String sql = "INSERT INTO mainService (name, adress, description) VALUES('Fans','A.Deglava 50','Lielakais veloservisu centrs riigaa!');";
-            String sql2 = "INSERT INTO mainService (name, adress, description) VALUES('Gandrs','Kalnciema 28','Lielakais veloservisu centrs riigaa!');";
-            String sql3 = "INSERT INTO mainService (name, adress, description) VALUES('ZZK','Ulmaņa gatve 201','Lielakais veloservisu centrs riigaa!');";
-            String sql4 = "INSERT INTO mainService (name, adress, description) VALUES('XSports','Džutas iela 8','Lielakais veloservisu centrs riigaa!');";
-            String sql5 = "INSERT INTO mainService (name, adress, description) VALUES('Hawaii Express','Biķernieku 11','Lielakais veloservisu centrs riigaa!');";
-            String sql6 = "INSERT INTO mainService (name, adress, description) VALUES('RigaBike','Matīsa 8','Lielakais veloservisu centrs riigaa!');";
-            String sql7 = "INSERT INTO mainService (name, adress, description) VALUES('Primum Bike','Brīvības gatve 390','Lielakais veloservisu centrs riigaa!');";
+            String sql = "INSERT INTO mainService (name, adress, phone, website) VALUES('Fans','A.Deglava 50','26132304','www.fans.lv');";
+            String sql2 = "INSERT INTO mainService (name, adress, phone) VALUES('Gandrs','Kalnciema 28','Lielakais veloservisu centrs riigaa!');";
+            String sql3 = "INSERT INTO mainService (name, adress, phone) VALUES('ZZK','Ulmaņa gatve 201','Lielakais veloservisu centrs riigaa!');";
+            String sql4 = "INSERT INTO mainService (name, adress, phone) VALUES('XSports','Džutas iela 8','Lielakais veloservisu centrs riigaa!');";
+            String sql5 = "INSERT INTO mainService (name, adress, phone) VALUES('Hawaii Express','Biķernieku 11','Lielakais veloservisu centrs riigaa!');";
+            String sql6 = "INSERT INTO mainService (name, adress, phone) VALUES('RigaBike','Matīsa 8','Lielakais veloservisu centrs riigaa!');";
+            String sql7 = "INSERT INTO mainService (name, adress, phone) VALUES('Primum Bike','Brīvības gatve 390','Lielakais veloservisu centrs riigaa!');";
             db.execSQL(sql);
             db.execSQL(sql2);
             db.execSQL(sql3);
@@ -95,11 +95,11 @@ public class DBAdapter {
     }
 
     // Add a new set of values to be inserted into the database.
-    public long insertRow(String name, String adress, String description, String website) {
+    public long insertRow(String name, String adress, String phone, String website) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NAME, name);
         initialValues.put(KEY_ADRESS, adress);
-        initialValues.put(KEY_DESCRIPTION, description);
+        initialValues.put(KEY_PHONE, phone);
         initialValues.put(KEY_WEBSITE, website);
 
         // Insert the data into the database.
@@ -112,9 +112,9 @@ public class DBAdapter {
         return db.delete(DATABASE_TABLE, where, null) != 0;
     }
 
-    public void deleteAll() {
-        Cursor c = getAllRows();
-        long rowId = c.getColumnIndexOrThrow(KEY_ROWID);
+        public void deleteAll() {
+            Cursor c = getAllRows();
+            long rowId = c.getColumnIndexOrThrow(KEY_ROWID);
         if (c.moveToFirst()) {
             do {
                 deleteRow(c.getLong((int) rowId));
